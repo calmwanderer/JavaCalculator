@@ -28,11 +28,12 @@ public class Main
                 catch (NumberFormatException e) { number1 = RomanToArabic(exp.substring(splitter_index +1)); ++exception_count;
                 }  
                 //
+
                 try {
-                if (number0 < 1 || number0 > 10) {throw new Exception("Введенное число вне условий ТЗ"); }
-                if (number1 < 1 || number1 > 10) {throw new Exception("Введенное число вне условий ТЗ"); }
-                if (exception_count == 1)        {throw new Exception("Введенное выражение вне условий ТЗ"); }
-                } catch(Exception exc) {System.exit(0);}
+                if (number0 < 1 || number0 > 10) throw new Exception("Введенное выражение вне условий ТЗ");
+                if (number1 < 1 || number1 > 10) throw new Exception("Введенное выражение вне условий ТЗ");
+                if (exception_count == 1)        throw new Exception("Введенное выражение вне условий ТЗ");
+                } catch(Exception exc) { System.out.println(exc);System.exit(0);}
                 //
                 if (i == 0) number0 += number1;
                 if (i == 1) number0 -= number1;
@@ -40,7 +41,7 @@ public class Main
                 if (i == 3) number0 /= number1;
                 //
                 boolean isRoman = exception_count == 2;
-                if (isRoman && number0 < 1) {try {throw new Exception("Невозможно записать вывод римскими числами");} catch(Exception exc) { System.exit(0); }}
+                if (isRoman && number0 < 1) {try {throw new Exception("Невозможно записать вывод римскими числами");} catch(Exception exc) { System.out.println(exc);System.exit(0); }}
                 return (isRoman) ? ArabicToRoman(number0) : Integer.toString(number0);
             }
         }
